@@ -1,0 +1,107 @@
+<template>
+    <lightning-card title="Account + Opportunity Insights" icon-name="standard:account">
+        <div class="slds-p-around_medium">
+
+            <!-- Top-level loading indicator when neither finished yet (optional) -->
+            <template if:true={isReady}>
+                <!-- nothing; show sections -->
+            </template>
+
+            <!-- ACCOUNT INFO SECTION -->
+            <section class="slds-m-bottom_medium">
+                <h3 class="slds-text-heading_small">Account Info</h3>
+
+                <!-- LDS loading skeleton/spinner -->
+                <template if:true={isLdsLoading}>
+                    <lightning-spinner alternative-text="Loading account" size="small"></lightning-spinner>
+                    
+                </template>
+
+                <!-- LDS error -->
+                <template if:true={hasLdsError}>
+                    <div class="slds-text-color_error slds-m-vertical_small">
+                        <strong>Error loading Account:</strong>
+                        <div>{accountErrorMessage}</div>
+                    </div>
+                </template>
+
+                <!-- Account content -->
+                <template if:false={isLdsLoading}>
+                    <dl class="slds-list_horizontal slds-has-dividers_right slds-wrap">
+                        <dt class="slds-item_label slds-size_1-of-3">Name</dt>
+                        <dd class="slds-item_detail slds-size_2-of-3">{accountName}</dd>
+
+                        <dt class="slds-item_label slds-size_1-of-3">Industry</dt>
+                        <dd class="slds-item_detail slds-size_2-of-3">{accountIndustry}</dd>
+
+                        <dt class="slds-item_label slds-size_1-of-3">Annual Revenue</dt>
+                        <dd class="slds-item_detail slds-size_2-of-3">{accountAnnualRevenue}</dd>
+
+                        <dt class="slds-item_label slds-size_1-of-3">Rating</dt>
+                        <dd class="slds-item_detail slds-size_2-of-3">{accountRating}</dd>
+                    </dl>
+                </template>
+            </section>
+
+            <lightning-button-group class="slds-m-bottom_medium">
+                <!-- Only refreshes Apex analytics -->
+                <lightning-button label="Refresh Insights" onclick={handleRefreshApex} icon-name="utility:refresh" variant="brand"></lightning-button>
+            </lightning-button-group>
+
+            <!-- OPPORTUNITY INSIGHTS SECTION -->
+            <section>
+                <h3 class="slds-text-heading_small">Opportunity Insights</h3>
+
+                <!-- Apex loading -->
+                <template if:true={isApexLoading}>
+                    <lightning-spinner alternative-text="Loading analytics" size="small"></lightning-spinner>
+                    <div class="slds-m-top_small">
+                    </div>
+                </template>
+
+                <!-- Apex error -->
+                <template if:true={hasApexError}>
+                    <div class="slds-text-color_error slds-m-vertical_small">
+                        <strong>Error loading Opportunity analytics:</strong>
+                        <div>{apexErrorMessage}</div>
+                    </div>
+                </template>
+
+                <!-- Apex content -->
+                <template if:false={isApexLoading}>
+                    <dl class="slds-list_horizontal slds-has-dividers_right slds-wrap slds-m-bottom_small">
+                        <dt class="slds-item_label slds-size_1-of-2">Total Opportunity Amount</dt>
+                        <dd class="slds-item_detail slds-size_1-of-2">{totalOpportunityAmount}</dd>
+
+                        <dt class="slds-item_label slds-size_1-of-2">Total Opportunity Count</dt>
+                        <dd class="slds-item_detail slds-size_1-of-2">{totalOpportunityCount}</dd>
+
+                        <dt class="slds-item_label slds-size_1-of-2">Closed Won Count</dt>
+                        <dd class="slds-item_detail slds-size_1-of-2">{closedWonCount}</dd>
+
+                        <dt class="slds-item_label slds-size_1-of-2">Open Opportunity Count</dt>
+                        <dd class="slds-item_detail slds-size_1-of-2">{openOpportunityCount}</dd>
+
+                        <dt class="slds-item_label slds-size_1-of-2">Average Deal Size</dt>
+                        <dd class="slds-item_detail slds-size_1-of-2">{averageDealSize}</dd>
+                    </dl>
+
+                    <!-- Deal Velocity -->
+                    <div class="slds-m-top_small">
+                        <template if:true={apexData}>
+                            <lightning-layout horizontal-align="spread" vertical-align="center">
+                                <lightning-layout-item flexibility="auto">
+                                    <div class="slds-text-body_small slds-m-bottom_xx-small">Deal Velocity</div>
+                                    <lightning-progress-bar value={dealVelocityScore} size="small" variant="warning"></lightning-progress-bar>
+                                </lightning-layout-item>
+                                <lightning-layout-item flexibility="shrink">
+                                    <div class="slds-text-body_regular slds-m-left_small">{dealVelocityScore}%</div>
+                                </lightning-layout-item>
+                            </lightning-layout>
+                        </template>
+                    </div>
+                </template>
+            </section>
+        </div>
+    </lightning-card>
+</template>
