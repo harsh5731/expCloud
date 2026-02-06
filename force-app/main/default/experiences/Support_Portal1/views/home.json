@@ -90,39 +90,10 @@
   }, {
     "components" : [ {
       "componentAttributes" : {
-        "channel" : "DefaultChannel",
-        "title" : ""
+        "richTextValue" : "<p style=\"text-align: center;\"><strong style=\"color: rgb(230, 0, 0);\">Create Your Case</strong></p>"
       },
-      "componentName" : "forceCommunity:recommendations",
-      "id" : "0fb2bbb3-728c-4a1e-ac22-3e50b042e6aa",
-      "renderPriority" : "NEUTRAL",
-      "renditionMap" : { },
-      "type" : "component"
-    }, {
-      "componentAttributes" : {
-        "display" : "LEVELS_POINTS",
-        "excludeInternalUsers" : false,
-        "knowledgeLabel" : "Knows about",
-        "numberOfUsers" : 5,
-        "showContextUser" : false,
-        "showTooltip" : false,
-        "showUserRank" : false,
-        "title" : "Leaderboard",
-        "tooltipText" : "Earn points and climb to new levels when you contribute in the experience!"
-      },
-      "componentName" : "forceCommunity:reputationLeaderboard42",
-      "id" : "b38262b3-befd-499f-9ec9-84fd28748959",
-      "renderPriority" : "NEUTRAL",
-      "renditionMap" : { },
-      "type" : "component"
-    }, {
-      "componentAttributes" : {
-        "numberOfTopics" : 5,
-        "showTopicsMetric" : true,
-        "title" : "Trending Topics"
-      },
-      "componentName" : "forceCommunity:trendingTopics",
-      "id" : "ca1be5ea-ee69-4b6b-a328-c389d10c3b6b",
+      "componentName" : "forceCommunity:richTextInline",
+      "id" : "4fad31dc-0bcb-4d16-a61f-330b9bd24bdd",
       "renderPriority" : "NEUTRAL",
       "renditionMap" : { },
       "type" : "component"
