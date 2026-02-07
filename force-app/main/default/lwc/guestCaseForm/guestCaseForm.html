@@ -1,0 +1,44 @@
+<template>
+    <lightning-card title="Create Your Case">
+        <div class="slds-p-around_medium">
+
+            <lightning-input
+                label="Name"
+                onchange={handleName}>
+            </lightning-input>
+
+            <lightning-input
+                type="email"
+                label="Email"
+                required
+                onchange={handleEmail}>
+            </lightning-input>
+
+            <lightning-input
+                label="Subject"
+                required
+                onchange={handleSubject}>
+            </lightning-input>
+
+            <lightning-textarea
+                label="Description"
+                onchange={handleDescription}>
+            </lightning-textarea>
+
+            <lightning-button
+                label="Submit"
+                variant="brand"
+                class="slds-m-top_medium"
+                onclick={handleSubmit}>
+            </lightning-button>
+
+            <template if:true={caseNumber}>
+                <p class="slds-m-top_medium slds-text-color_success">
+                    Case created successfully.  
+                    Case Number: <strong>{caseNumber}</strong>
+                </p>
+            </template>
+
+        </div>
+    </lightning-card>
+</template>
